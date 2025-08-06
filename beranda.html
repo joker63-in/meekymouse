@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beranda</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: Arial, sans-serif;
       background: url('background.png') no-repeat center center fixed;
       background-size: cover;
-      position: relative;
       color: white;
+      position: relative;
     }
 
     body::before {
@@ -77,6 +80,10 @@
       width: 40%;
       margin: 3vw 0;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .menu-item img {
@@ -105,20 +112,26 @@
     .footer .date {
       margin-bottom: 1vw;
     }
+
+    .footer .online {
+      margin-top: 1vw;
+      color: #00ffcc;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Header Profil -->
+    <!-- Header -->
     <div class="header">
-      <img src="profile.png" alt="Profil">
+      <img src="profile.png" alt="Profil" />
       <div class="info">
         <h2>Mode Senju Developers</h2>
         <p>hardware & software sollution</p>
       </div>
     </div>
 
-    <!-- Menu Tengah -->
+    <!-- Menu -->
     <div class="menu-box">
       <div class="menu-item">
         <a href="jaringan/jaringan.html"><img src="logo1.png" alt="Jaringan">JARINGAN</a>
@@ -138,15 +151,51 @@
     <div class="footer">
       <div class="date" id="tanggal"></div>
       <div class="hub">HUB: 082258988041</div>
+      <div class="online">👥 Online: <span id="onlineCount">...</span></div>
     </div>
   </div>
 
+  <!-- Script: Tanggal Otomatis -->
   <script>
     const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                   "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     const now = new Date();
     const tampil = `${bulan[now.getMonth()]} ${now.getFullYear()}`;
     document.getElementById("tanggal").textContent = tampil;
   </script>
+
+  <!-- Script: Firebase Online Counter -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKOAwv1QKeYNuF8TKCHMe4r-vyk5pYzpU",
+      authDomain: "mukti-8f2a7.firebaseapp.com",
+      projectId: "mukti-8f2a7",
+      storageBucket: "mukti-8f2a7.appspot.com",
+      messagingSenderId: "262873253765",
+      appId: "1:262873253765:web:cb925d7865c1932672b678",
+      measurementId: "G-VN9KWBEF3W",
+      databaseURL: "https://mukti-8f2a7-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const userId = "user_" + Math.random().toString(36).substr(2, 9);
+    const userRef = db.ref("pengunjung/" + userId);
+    userRef.set(true);
+    userRef.onDisconnect().remove();
+
+    db.ref("pengunjung").on("value", (snapshot) => {
+      const jumlah = snapshot.numChildren();
+      document.getElementById("onlineCount").innerText = jumlah;
+    });
+  </script>
 </body>
 </html>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log("✅ Service Worker registered"))
+      .catch(err => console.error("❌ Service Worker gagal:", err));
+  }
+</script>
