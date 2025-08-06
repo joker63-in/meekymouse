@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      color: white;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .container {
+      padding: 4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 4vw;
+      margin-bottom: 5vw;
+    }
+
+    .header img {
+      width: 20vw;
+      height: 20vw;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .header .info {
+      flex-grow: 1;
+    }
+
+    .info h2 {
+      font-size: 5vw;
+      margin-bottom: 1vw;
+    }
+
+    .info p {
+      font-size: 3.5vw;
+    }
+
+    .menu-box {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 4vw;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .menu-item {
+      width: 40%;
+      margin: 3vw 0;
+      text-align: center;
+    }
+
+    .menu-item img {
+      width: 30vw;
+      height: 30vw;
+    }
+
+    .menu-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1vw;
+      color: white;
+      text-decoration: none;
+      font-size: 4vw;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 3.5vw;
+      margin-top: auto;
+    }
+
+    .footer .date {
+      margin-bottom: 1vw;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Profil -->
+    <div class="header">
+      <img src="profile.png" alt="Profil">
+      <div class="info">
+        <h2>Mode Senju Developers</h2>
+        <p>hardware & software sollution</p>
+      </div>
+    </div>
+
+    <!-- Menu Tengah -->
+    <div class="menu-box">
+      <div class="menu-item">
+        <a href="jaringan/jaringan.html"><img src="logo1.png" alt="Jaringan">JARINGAN</a>
+      </div>
+      <div class="menu-item">
+        <a href="android/android.html"><img src="logo2.png" alt="Android">ANDROID</a>
+      </div>
+      <div class="menu-item">
+        <a href="vidio.html"><img src="logo3.png" alt="Vidio">VIDIO</a>
+      </div>
+      <div class="menu-item">
+        <a href="dataku.html"><img src="logo4.png" alt="Dataku">DATAKU</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="date" id="tanggal"></div>
+      <div class="hub">HUB: 082258988041</div>
+    </div>
+  </div>
+
+  <script>
+    const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                   "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const now = new Date();
+    const tampil = `${bulan[now.getMonth()]} ${now.getFullYear()}`;
+    document.getElementById("tanggal").textContent = tampil;
+  </script>
+</body>
+</html>
