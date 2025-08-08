@@ -7,7 +7,6 @@
     <style>
         body {
             margin: 0;
-            padding: 0; /* Menghapus padding-top dari body */
             font-family: Arial, sans-serif;
             background-image: url('background.jpg');
             background-size: cover;
@@ -15,17 +14,20 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: white;
+            padding-top: 170px;
         }
 
-        /* Style untuk header yang menempel di atas */
         .top-header {
-            position: fixed; /* Membuat elemen menempel di layar */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 10; /* Memastikan header selalu di paling depan */
+            z-index: 10;
             text-align: center;
             padding-top: 20px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            background-color: rgba(33, 33, 33, 0.2);
         }
 
         .container {
@@ -36,23 +38,21 @@
             box-sizing: border-box;
             background-color: rgba(33, 33, 33, 0.8);
             border-radius: 15px;
-            /* Memberi jarak dari atas agar tidak tertutup header */
-            margin: 170px auto 40px auto; 
+            margin: 0 auto 40px auto;
         }
 
-        /* Mengubah margin logo dan H1 yang sekarang ada di header atas */
         .main-logo {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            margin: 0 auto 15px auto; /* Mengatur ulang margin */
+            margin: 0 auto 15px auto;
             object-fit: cover;
         }
 
         h1 {
             font-size: 2em;
             letter-spacing: 4px;
-            margin: 0 0 20px 0; /* Mengatur ulang margin */
+            margin: 0 0 20px 0;
         }
 
         .grid-container {
@@ -60,14 +60,25 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-        .grid-item {
+
+        /* Mengubah selector dari .grid-item menjadi a.grid-item agar lebih spesifik */
+        a.grid-item {
             background-color: #333333;
             border-radius: 10px;
             padding: 15px;
             display: flex;
             align-items: center;
             text-align: left;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
+
+        a.grid-item:hover {
+            transform: scale(1.05);
+            background-color: #444444;
+        }
+        
         .item-logo {
             width: 40px;
             height: 40px;
@@ -76,48 +87,65 @@
             margin-right: 12px;
             object-fit: cover;
         }
+
         .grid-item span {
             font-size: 1.1em;
             font-weight: bold;
+        }
+
+        @media (max-width: 420px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8em;
+                letter-spacing: 3px;
+            }
+            body {
+                padding-top: 160px;
+            }
         }
     </style>
 </head>
 <body>
 
     <header class="top-header">
-        <img src="jaringan.png" alt="Logo 1" class="main-logo">
+        <img src="jaringan.png" alt="Logo Utama Jaringan" class="main-logo">
         <h1>JARINGAN</h1>
     </header>
 
     <div class="container">
 
         <main class="grid-container">
-            <div class="grid-item">
-                <img src="logo2.png" alt="Logo 2" class="item-logo">
+            <a href="https://joker63-in.github.io/WIFI-PROJECT-/" class="grid-item">
+                <img src="logo2.png" alt="Ikon Voucher Wifi" class="item-logo">
                 <span>VOUCHER WIFI</span>
-            </div>
-            <div class="grid-item">
-                <img src="logo3.png" alt="Logo 5" class="item-logo">
+            </a>
+
+            <a href="wpa.html" class="grid-item">
+                <img src="logo3.png" alt="Ikon Wifi WPA" class="item-logo">
                 <span>WIFI WPA</span>
-            </div>
+            </a>
 
-            <div class="grid-item">
-                <img src="logo4.png" alt="Logo 3" class="item-logo">
+            <a href="injector.html" class="grid-item">
+                <img src="logo4.png" alt="Ikon Internet Injector" class="item-logo">
                 <span>Internet Injecktor</span>
-            </div>
-            <div class="grid-item">
-                <img src="logo5.png" alt="Logo 6" class="item-logo">
-                <span>Free Pasang Wifi</span>
-            </div>
+            </a>
 
-            <div class="grid-item">
-                <img src="logo6.png" alt="Logo 4" class="item-logo">
+            <a href="pasang.html" class="grid-item">
+                <img src="logo5.png" alt="Ikon Pasang Wifi Gratis" class="item-logo">
+                <span>Free Pasang Wifi</span>
+            </a>
+
+            <a href="hack.html" class="grid-item">
+                <img src="logo6.png" alt="Ikon Hack Wifi" class="item-logo">
                 <span>Hack Wifi</span>
-            </div>
-            <div class="grid-item">
-                <img src="logo7.png" alt="Logo 7" class="item-logo">
+            </a>
+
+            <a href="tambahan.html" class="grid-item">
+                <img src="logo7.png" alt="Ikon Tambahan" class="item-logo">
                 <span>Tambahan</span>
-            </div>
+            </a>
         </main>
 
     </div>
