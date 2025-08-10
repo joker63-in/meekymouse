@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANDROID</title>
     <style>
+        /* === BAGIAN CSS LENGKAP === */
+
         body {
             margin: 0;
-            padding: 0; /* Menghapus padding-top dari body */
+            padding: 0;
             font-family: Arial, sans-serif;
             background-image: url('background.png');
             background-size: cover;
@@ -15,15 +17,28 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: white;
+            position: relative; /* Diperlukan untuk lapisan overlay */
+        }
+
+        /* Lapisan overlay gelap transparan */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Hitam dengan 60% opasitas. Ubah 0.6 untuk mengatur kegelapan */
+            z-index: -1; /* Menempatkan overlay di belakang konten */
         }
 
         /* Style untuk header yang menempel di atas */
         .top-header {
-            position: fixed; /* Membuat elemen menempel di layar */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 10; /* Memastikan header selalu di paling depan */
+            z-index: 10;
             text-align: center;
             padding-top: 20px;
         }
@@ -34,25 +49,23 @@
             text-align: center;
             padding: 20px 15px;
             box-sizing: border-box;
-            background-color: rgba(33, 33, 33, 0.8);
+            background-color: rgba(33, 33, 33, 0.8); /* Latar belakang kontainer utama */
             border-radius: 15px;
-            /* Memberi jarak dari atas agar tidak tertutup header */
-            margin: 170px auto 40px auto; 
+            margin: 170px auto 40px auto;
         }
 
-        /* Mengubah margin logo dan H1 yang sekarang ada di header atas */
         .main-logo {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            margin: 0 auto 15px auto; /* Mengatur ulang margin */
+            margin: 0 auto 15px auto;
             object-fit: cover;
         }
 
         h1 {
             font-size: 2em;
             letter-spacing: 4px;
-            margin: 0 0 20px 0; /* Mengatur ulang margin */
+            margin: 0 0 20px 0;
         }
 
         .grid-container {
@@ -60,6 +73,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
+
+        /* Style untuk setiap item di grid (sekarang tag <a>) */
         .grid-item {
             background-color: #333333;
             border-radius: 10px;
@@ -67,7 +82,17 @@
             display: flex;
             align-items: center;
             text-align: left;
+            /* Style agar link tidak bergaris bawah dan warnanya tetap putih */
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s; /* Efek hover */
         }
+
+        /* Efek hover agar item lebih interaktif */
+        .grid-item:hover {
+            background-color: #555555;
+        }
+
         .item-logo {
             width: 40px;
             height: 40px;
@@ -76,6 +101,7 @@
             margin-right: 12px;
             object-fit: cover;
         }
+
         .grid-item span {
             font-size: 1.1em;
             font-weight: bold;
@@ -90,36 +116,37 @@
     </header>
 
     <div class="container">
-
         <main class="grid-container">
-            <div class="grid-item">
-                <img src="logo2.png" alt="Logo 2" class="item-logo">
-                <span>Modul magis</span>
-            </div>
-            <div class="grid-item">
-                <img src="logo5.png" alt="Logo 5" class="item-logo">
-                <span>Custom rom</span>
-            </div>
+            <a href="module-magisk.html" class="grid-item">
+                <img src="module.png" alt="Logo 2" class="item-logo">
+                <span>Module Magisk</span>
+            </a>
+            
+            <a href="custom-rom.html" class="grid-item">
+                <img src="aosp.png" alt="Logo 5" class="item-logo">
+                <span>Custom Rom</span>
+            </a>
 
-            <div class="grid-item">
-                <img src="logo3.png" alt="Logo 3" class="item-logo">
-                <span>Nama 2</span>
-            </div>
-            <div class="grid-item">
-                <img src="logo6.png" alt="Logo 6" class="item-logo">
-                <span>Nama 5</span>
-            </div>
+            <a href="root.html" class="grid-item">
+                <img src="root.png" alt="Logo 3" class="item-logo">
+                <span>ROOT</span>
+            </a>
 
-            <div class="grid-item">
-                <img src="logo4.png" alt="Logo 4" class="item-logo">
-                <span>Nama 3</span>
-            </div>
-            <div class="grid-item">
-                <img src="logo7.png" alt="Logo 7" class="item-logo">
-                <span>Nama 6</span>
-            </div>
+            <a href="ubl.html" class="grid-item">
+                <img src="ubl.png" alt="Logo 6" class="item-logo">
+                <span>UBL</span>
+            </a>
+
+            <a href="mod-apk.html" class="grid-item">
+                <img src="mod.png" alt="Logo 4" class="item-logo">
+                <span>MOD APK</span>
+            </a>
+
+            <a href="config-apk.html" class="grid-item">
+                <img src="config.png" alt="Logo 7" class="item-logo">
+                <span>Config APK</span>
+            </a>
         </main>
-
     </div>
 
 </body>
